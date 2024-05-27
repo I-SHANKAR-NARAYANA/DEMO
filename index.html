@@ -3,23 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sc</title>
+    <title>Demo</title>
+    <style>
+      #numberInputContainer {
+        display: none;
+        margin-top: 10px;
+      }
+    </style>
   </head>
   <body>
-    <form id="downloadForm">
-      <label for="numberInput">:</label>
-      <input
-        type="number"
-        id="numberInput"
-        name="numberInput"
-        min="1"
-        max="11"
-        required
-      />
-      <button type="submit">D</button>
+    <form id="mainForm">
+      <label for="textInput"></label>
+      <input type="text" id="textInput" name="textInput" required />
+      <button type="button" onclick="checkCode()">s</button>
     </form>
 
+    <div id="numberInputContainer">
+      <form id="downloadForm">
+        <label for="numberInput"></label>
+        <input
+          type="number"
+          id="numberInput"
+          name="numberInput"
+          min="1"
+          max="11"
+          required
+        />
+        <button type="submit"></button>
+      </form>
+    </div>
+
     <script>
+      function checkCode() {
+        const textInput = document.getElementById("textInput").value;
+        if (textInput === "Shankara108*") {
+          document.getElementById("numberInputContainer").style.display =
+            "block";
+        } else {
+          alert("Demmo alert");
+        }
+      }
+
       document
         .getElementById("downloadForm")
         .addEventListener("submit", function (event) {
@@ -33,7 +57,7 @@
             link.click();
             document.body.removeChild(link);
           } else {
-            alert(" ");
+            alert("Demo alert");
           }
         });
     </script>
