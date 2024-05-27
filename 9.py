@@ -1,6 +1,6 @@
 # 9. N-Queens
 
-def is_safe(row, col, n, pos):
+def is_safe(row, col, pos):
     for i in range(row):
         if pos[i] == col or abs(pos[i] - col) == row - i:
             return False
@@ -13,7 +13,7 @@ def n_queens(n, row=0, pos=[]):
 
     solutions = []
     for col in range(n):
-        if is_safe(row, col, n, pos):
+        if is_safe(row, col, pos):
             new_pos = pos + [col]
             solutions += n_queens(n, row + 1, new_pos)
     return solutions
