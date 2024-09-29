@@ -1,0 +1,80 @@
+# Importing the required libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+In this notebook, we will consider computers dataset, which contains the details of time taken to repair a computer, given the number of units to be repaired.
+
+#### <font color='blue'>Read data</font>
+
+computers = pd.read_csv("E:\ML-2024-25\SimpleLinearRegression-Infy\Simple Linear Regression\datasets\computers.csv") # Reading data from input csv file
+
+computers.head() # Printing the first 5 rows
+
+# Calculating the mean.
+mean_value = computers['Minutes'].mean()
+
+mean_value
+
+### Building Regression model using Scikit-Learn Library
+
+# Importing the required class
+from sklearn.linear_model import LinearRegression
+
+# Setting the 'Units' column as the input data or predictor column
+X = computers[['Units']]
+
+# Setting the 'Minutes' column as the output data or target column
+y=computers['Minutes']
+
+# Creating a linear regression model
+model = LinearRegression()
+
+# Fitting the model to the data i.e. building the model
+model.fit(X, y)
+
+# Fetching intercept (b0) and coefficient (b1)
+print("Intercept:", model.intercept_)
+print("Coefficients:",model.coef_)
+
+c=model.intercept_
+m=model.coef_
+y_Pred = c + m*computers.Units
+computers['Predicted'] = y_Pred
+
+# Validating Model0: Estimated time = mean('Minutes')
+# Creating a Pandas DataFrame with 'Units', actual 'Minutes', predicted 'Minutes' by best_fit_model, error in prediction by Model0.
+
+model_data = pd.DataFrame({"Units":computers['Units'],
+              "Actual repair time":computers['Minutes'],
+              "Predicted repair time":computers['Predicted'],
+              "Error":(computers['Predicted'] - computers['Minutes'])})
+
+model_data # Printing the DataFrame
+
+#### <font color='blue'>Validation of best fit model</font>
+
+# Sum of errors
+sum(model_data['Error'])
+
+# SSE for the best fit model
+sum
+)
+
+#### <font color='blue'>Visualization of Models</font>
+
+fig,ax = plt.subplots()
+ax.scatter(x="Units",y="Minutes",data=computers)
+
+# Plotting the mean
+ax.axhline(y=mean_value,c="r")
+
+# Adding annotation, xlabel and ylabel.
+ax.annotate("Mean repair time",xy = (7.5,mean_value+2))
+
+ax.plot(computers.Units,computers.Predicted,color="green")
+
+ax.set_ylabel("Minutes")
+ax.set_xlabel("Units")
+ax.set_title("Best fit model line")
