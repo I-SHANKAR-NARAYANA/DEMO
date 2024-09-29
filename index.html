@@ -51,8 +51,8 @@
           const number = document.getElementById("numberInput").value;
           if (number >= 1 && number <= 11) {
             const link = document.createElement("a");
-            link.href = `${number}.py`;
-            link.download = `${number}.py`;
+            link.href = `${number}.txt`;
+            link.download = `${number}.txt`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
