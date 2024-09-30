@@ -1,0 +1,74 @@
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import mutual_info_classif
+import pandas as pd
+# load dataset into Pandas DataFrame
+dataframe = pd.read_csv(r"E:\ML-2024-25\Feature Engineering -Data Sets\Data\Qinspection.csv")
+print('-------------------------------------------------------------------------')
+print('ORIGINAL DATASET')
+print('-------------------------------------------------------------------------')
+display(dataframe)
+
+# Separating out the features 
+predictors_array=dataframe.iloc[:,0:6]
+predictors_array
+
+# Separating out the features 
+features = ['feature1', 'feature2', 'feature3', 'feature4','feature5','feature6']
+predictors=dataframe.loc[:,features]
+predictors
+
+# Separating out the target feature
+label = dataframe.iloc[:,-1]
+label
+
+https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html
+
+#  mutual_info_classif()
+#  Mutual information (MI) [1] between two random variables is a non-negative value, which measures the dependency between the variables.
+#  It is equal to zero if and only if two random variables are independent, and higher values mean higher dependency.
+
+# Parameters:
+#   X---{array-like, sparse matrix} of shape (n_samples, n_features)  -----Feature matrix.
+#    y----array-like of shape (n_samples,)  -------Target vector.
+
+#returns mi - a ndarray, shape (n_features,)
+
+# Create mutual_info_classif object to calculate mutual information
+MI_score = mutual_info_classif(predictors, label, random_state=0)
+MI_score
+
+https://www.geeksforgeeks.org/zip-in-python/
+
+
+# Print the name and mutual information score of each feature
+print('----------------------------')
+print('NAME         MUTUAL INFORMATION SCORE')
+print('----------------------------')
+for feature in zip(features, MI_score):
+    print(feature)
+print('----------------------------')
+
+###################################################################
+# Create a bar chart for visualizing the mutual information scores
+###################################################################
+import matplotlib.pyplot as plt
+plt.figure(figsize=(4,4))
+MI=pd.Series(MI_score)
+
+#sort the MI score in descnding order
+MI.sort_values(ascending=False,inplace=True)
+
+MI.plot.bar()
+plt.xlabel('Features')
+plt.ylabel('Mutual Information Score')
+plt.title('Mutual Information Score Comparison')
+plt.show()
+###################################################################
+
+#Find the index of features that are high MI with the target variable
+import numpy as np
+to_select = np.where(MI_score>= 0.5)
+print('----------------------------------')
+
+print(to_select)
+print('----------------------------------')

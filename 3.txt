@@ -1,0 +1,42 @@
+import pandas as pd
+import numpy as np
+from sklearn.feature_selection import VarianceThreshold
+# load dataset into Pandas DataFrame
+dataframe = pd.read_csv(r"E:\ML-2024-25\Feature Engineering -Data Sets\Data\Qinspection.csv")
+print('-------------------------------------------------------------------------')
+print('ORIGINAL DATASET')
+print('-------------------------------------------------------------------------')
+display(dataframe)
+
+#-----------------------------------------------------------------------------------
+features = ['feature1', 'feature2', 'feature3', 'feature4','feature5','feature6']
+# Separating out the features
+X=dataframe.loc[:,features].values
+# Separating out the target
+label = dataframe.iloc[:,-1]
+
+###################################################
+# VARIANCE THRESHOLDING
+###################################################
+selector = VarianceThreshold(threshold=0.2)
+# Perform variance thresholding
+data=selector.fit_transform(X)
+
+#reduced number of features
+print('----------------------')
+print(' FEATURE and its VARIANCE')
+print('----------------------')
+for feature in zip(features, selector.variances_):
+    display(feature)
+
+# Print the results
+print('Number of features before variance thresholding: {}'.format(X.shape))
+print('Number of features after variance thresholding: {}'.format(data.shape))
+
+#convert label to dataframe
+dflabel=pd.DataFrame(label)
+data=pd.DataFrame(data)
+
+#concatenate seected features and class label
+dfnew=pd.concat([data,dflabel],axis=1)
+dfnew.head()

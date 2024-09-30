@@ -1,0 +1,88 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+# load dataset into Pandas DataFrame
+productdata = pd.read_csv(r"E:\ML-2024-25\Feature Engineering -Data Sets\Data\Qinspection.csv")
+print('-------------------------------------------------------------------------')
+print('ORIGINAL DATASET')
+print('-------------------------------------------------------------------------')
+print(productdata)
+
+productdata.info()
+
+productdata.describe()
+
+#-----------------------------------------------------------------------------------
+features = ['feature1', 'feature2', 'feature3', 'feature4','feature5','feature6']
+# Separating out the features
+predictor_Features=productdata.loc[:,features].values
+
+# Separating out the target
+classlabel = productdata.iloc[:,-1]
+#-----------------------------------------------------------------------------------
+
+# Standardizing the features
+std_predictor_Features = StandardScaler().fit_transform(predictor_Features)
+#-----------------------------------------------------------------------------------
+
+std_predictor_Features.dtype
+
+type(std_predictor_Features)
+
+std_predictor_Features
+
+# Converting standerdized predictor_Features matrix into DataFrame
+df = pd.DataFrame(std_predictor_Features)
+df.head(5)
+
+# Creating correlation matrix
+cor_matrix = df.corr().abs()
+print(cor_matrix); 
+
+type(cor_matrix)
+
+# this is an optional cell 
+# just to add labels for the rows and columns for better understanding of the correlation values
+ndf=pd.DataFrame(cor_matrix)
+ndf.columns=features
+ndf.index=features
+ndf
+
+# Make correlation matrix without duplicates
+# For this purpose triu() function is used which returns an upper triangular matrix with the shape of the correlation matrix
+# (Value 1 for elements above the main diagonal and 0 for others). 
+# The method astype() converts the matrix values to boolean. 
+
+# Selecting upper triangle of correlation matrix
+import numpy as np
+upper_cor_tri = cor_matrix.where(np.triu(np.ones(cor_matrix.shape),k=1).astype(bool))
+print('Upper diagonal corelation matrix '); 
+print(upper_cor_tri)
+print('-----------------------------\n')
+
+# Finding index of feature columns with correlation greater than 0.95
+to_drop = [column for column in upper_cor_tri.columns if any(upper_cor_tri[column] > 0.95)]
+print('index of correlated features to be dropped=',to_drop ); 
+print('-----------------------------\n')
+
+# Droping Marked Features
+df1 = df.drop(df.columns[to_drop], axis=1)
+print(' after dropping the corelated features'); 
+print(df1.head(5))
+#-------------------------------------
+
+#-------------------------------------
+#convert label to dataframe
+dflabel=pd.DataFrame(classlabel)
+#concatenate selected features and class label
+dfnew=pd.concat([df1,dflabel],axis=1)
+print(dfnew.head())
+
+
+#Convert to 1-D series and drop Null values 
+unique_corr_pairs = upper_cor_tri.unstack().dropna() 
+
+#Convert correlation matrix to 1-D Series and sort 
+sorted_mat = unique_corr_pairs.sort_values() 
+  
+print(sorted_mat) 
