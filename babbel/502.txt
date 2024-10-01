@@ -1,0 +1,82 @@
+Conversation opened. 2 messages. 1 message unread.
+
+Skip to content
+Using Gmail with screen readers
+1 of 2,896
+(no subject)
+Inbox
+
+I S N <shankara.vadhulasa@gmail.com>
+Attachments
+Mon, 30 Sept, 22:07 (8 hours ago)
+to me
+
+Exp No 9. MongoDB Replica Updated.txt 
+One attachment
+  • Scanned by Gmail
+
+I S N <shankara.vadhulasa@gmail.com>
+05:54 (1 hour ago)
+to me
+
+const url = 'mongodb://127.0.0.1:27020,127.0.0.1:27021,127.0.0.1:27022/cbitit1?replicaSet=m101';
+
+TERMINAL1
+start mongod --replSet m101 -logpath \data\rs1\1.log --dbpath \data\rs1 --port 27020
+
+
+TERMINAL2
+
+start mongod --replSet m101 -logpath \data\rs2\2.log --dbpath \data\rs2 --port 27021
+
+
+TERMINAL3
+
+start mongod --replSet m101 -logpath \data\rs3\3.log --dbpath \data\rs3 --port 27022
+
+
+TERMINAL1
+
+mongosh --port 27020
+
+config = { _id: "m101", members:[
+          { _id : 0, host : "localhost:27020"},
+          { _id : 1, host : "localhost:27021"},
+          { _id : 2, host : "localhost:27022"} ]
+         };
+
+
+rs.initiate(config);
+rs.status();
+
+use cbit
+db.it3.find();
+
+TERMINAL2
+
+mongosh --port 27021
+rs.secondaryOk()
+db.products.find();
+
+TERMINAL3
+
+mongosh --port 27022
+rs.secondaryOk()
+db.products.find();
+
+
+TERMINAL1
+
+use admin;
+db.shutdownServer();
+
+
+
+open a TERMINAL2 & TERMINAL3
+
+rs.status();
+
+
+
+Exp No 9. MongoDB Replica Updated.txt
+Displaying Exp No 9. MongoDB Replica Updated.txt. 
