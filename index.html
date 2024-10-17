@@ -4,22 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo</title>
-    <style>
-      #numberInputContainer {
-        display: none;
-        margin-top: 10px;
-      }
-    </style>
   </head>
   <body>
     <form id="mainForm">
       <label for="textInput"></label>
       <input type="text" id="textInput" name="textInput" required />
-      <button type="button" onclick="checkCode()">s</button>
+      <button type="button" onclick="dalert()">s</button>
     </form>
 
     <div id="numberInputContainer">
-      <form id="downloadForm">
+      <form id="form">
         <label for="numberInput"></label>
         <input
           type="number"
@@ -34,31 +28,15 @@
     </div>
 
     <script>
-      function checkCode() {
-        const textInput = document.getElementById("textInput").value;
-        if (textInput === "Shankara108*") {
-          document.getElementById("numberInputContainer").style.display =
-            "block";
-        } else {
+      function dalert() {
           alert("Demmo alert");
-        }
       }
 
       document
-        .getElementById("downloadForm")
+        .getElementById("form")
         .addEventListener("submit", function (event) {
           event.preventDefault();
-          const number = document.getElementById("numberInput").value;
-          if ((number >= 1 && number <= 11) || (number >= 500 && number <= 505)) {
-            const link = document.createElement("a");
-            link.href = `babbel/${number}.txt`;
-            link.download = `${number}.txt`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          } else {
             alert("Demo alert");
-          }
         });
     </script>
   </body>
