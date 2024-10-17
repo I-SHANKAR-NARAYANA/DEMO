@@ -1,74 +1,1 @@
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import mutual_info_classif
-import pandas as pd
-# load dataset into Pandas DataFrame
-dataframe = pd.read_csv(r"E:\ML-2024-25\Feature Engineering -Data Sets\Data\Qinspection.csv")
-print('-------------------------------------------------------------------------')
-print('ORIGINAL DATASET')
-print('-------------------------------------------------------------------------')
-display(dataframe)
-
-# Separating out the features 
-predictors_array=dataframe.iloc[:,0:6]
-predictors_array
-
-# Separating out the features 
-features = ['feature1', 'feature2', 'feature3', 'feature4','feature5','feature6']
-predictors=dataframe.loc[:,features]
-predictors
-
-# Separating out the target feature
-label = dataframe.iloc[:,-1]
-label
-
-https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html
-
-#  mutual_info_classif()
-#  Mutual information (MI) [1] between two random variables is a non-negative value, which measures the dependency between the variables.
-#  It is equal to zero if and only if two random variables are independent, and higher values mean higher dependency.
-
-# Parameters:
-#   X---{array-like, sparse matrix} of shape (n_samples, n_features)  -----Feature matrix.
-#    y----array-like of shape (n_samples,)  -------Target vector.
-
-#returns mi - a ndarray, shape (n_features,)
-
-# Create mutual_info_classif object to calculate mutual information
-MI_score = mutual_info_classif(predictors, label, random_state=0)
-MI_score
-
-https://www.geeksforgeeks.org/zip-in-python/
-
-
-# Print the name and mutual information score of each feature
-print('----------------------------')
-print('NAME         MUTUAL INFORMATION SCORE')
-print('----------------------------')
-for feature in zip(features, MI_score):
-    print(feature)
-print('----------------------------')
-
-###################################################################
-# Create a bar chart for visualizing the mutual information scores
-###################################################################
-import matplotlib.pyplot as plt
-plt.figure(figsize=(4,4))
-MI=pd.Series(MI_score)
-
-#sort the MI score in descnding order
-MI.sort_values(ascending=False,inplace=True)
-
-MI.plot.bar()
-plt.xlabel('Features')
-plt.ylabel('Mutual Information Score')
-plt.title('Mutual Information Score Comparison')
-plt.show()
-###################################################################
-
-#Find the index of features that are high MI with the target variable
-import numpy as np
-to_select = np.where(MI_score>= 0.5)
-print('----------------------------------')
-
-print(to_select)
-print('----------------------------------')
+~8}yF~}y}w}}{88k}}{cZ}"~8}yF~}y}w}}{88yw~w{y~"8y|y8y8|";8y|8|yy}88hy|y8\yy^y}"|yy~y}8U8|F}y|w{@:]RtedEJHJLEJMt^}y}8]}}8E\yy8k}t\yyti}{F{:A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@?gja_afYd8\YlYk]l?A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"|y@|yy~y}A"";8k}yy88}8~}y}8"}|{wyyU|yy~y}F{sRDHRNu"}|{wyy"";8k}yy88}8~}y}8"~}y}8U8s?~}y}I?D8?~}y}J?D8?~}y}K?D8?~}y}L?D?~}y}M?D?~}y}N?u"}|{U|yy~y}F{sRD~}y}u"}|{"";8k}yy88}8y}8~}y}"yz}8U8|yy~y}F{sRDEIu"yz}""RGG{E}yFGyz}G|}G}}y}|G}yF~}y}w}}{Fyw~w{y~F"";88yw~w{y~@A";88ey8~y8@eaA8sIu8z}}}88y|8yyz}88y8E}y}8y}D8{8}y}8}8|}}|}{8z}}}8}8yyz}F";88a88}y88}8~8y|88~88y|8yyz}8y}8|}}|}D8y|8}8y}8}y8}8|}}|}{F"";8hyy}}R";888pEEEyyE}D8y}8y8~8y}8@wy}D8w~}y}A88EEEEE^}y}8yF";8888EEEEyyE}8~8y}8@wy}DA88EEEEEEEly}8}{F"";}88E8y8|yyD8y}8@w~}y}DA"";8[}y}8yw~w{y~8z}{88{y{y}8y8~y"eaw{}8U8yw~w{y~@}|{D8yz}D8y|wy}UHA"eaw{}""RGGF}}~}}FGEEG""";8h8}8y}8y|8y8~y8{}8~8}y{8~}y}"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@?fYe]888888888emlmYd8af^gjeYlagf8k[gj]?A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"~8~}y}88@~}y}D8eaw{}AR"8888@~}y}A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;";8[}y}8y8zy8{y8~8y8}8y8~y8{}";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"8yzF8y8"F~}@~}U@LDLAA"eaU|Fk}}@eaw{}A"";8}8ea8{}88|}{|8|}"eaFwy}@y{}|U^y}Dy{}Ul}A""eaFFzy@A"Fyz}@?^}y}?A"Fyz}@?ey8a~y8k{}?A"F}@?ey8a~y8k{}8[y?A"F@A";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"";^|8}8|}8~8~}y}8y8y}88ea88}8y}8yyz}"88y8"w}}{8U8F}}@eaw{}VU8HFMA"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A""@w}}{A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"

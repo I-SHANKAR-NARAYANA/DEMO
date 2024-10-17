@@ -1,66 +1,1 @@
-import numpy as np
-import pandas as pd
-
-# Step 1: Load the Data from an Online Source
-url = "E:\ML-2024-25\Logistic Regression\pima-indians-diabetes.csv"
-columns = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin',
-           'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome']
-
-# Load the dataset
-df = pd.read_csv(url, header=None, names=columns)
-
-# Display the first few rows of the dataset
-print("First 5 rows of the dataset:")
-print(df.head())
-
-
-df.info()
-
-from sklearn.preprocessing import StandardScaler
-# Step 2: Split the Data into Features and Target
-X = df.drop('Outcome', axis=1)  # Features
-y = df['Outcome']               # Target
-
-# Step 3: Apply Standard Scaling to the Features
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-from sklearn.model_selection import train_test_split
-# Step 4: Split the Data into Training and Testing Sets
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
-
-print("Shape of X_train:", X_train.shape)
-print("Shape of y_train:", y_train.shape)
-print("Shape of X_test:", X_test.shape)
-print("Shape of y_test:", y_test.shape)
-
-from sklearn.linear_model import LogisticRegression
-# Step 5: Train the Logistic Regression Model
-model = LogisticRegression()
-model.fit(X_train, y_train)
-
-# Step 6: Make Predictions
-y_pred = model.predict(X_test)
-
-# Step 7: Evaluate the Model
-from sklearn.metrics import confusion_matrix, accuracy_score
-
-# Confusion Matrix
-cm = confusion_matrix(y_test, y_pred)
-print(" The confusion matrix is=")
-print(cm)
-
-https://www.geeksforgeeks.org/seaborn-heatmap-a-comprehensive-guide/
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-print(" The confusion matrix is in the graphical form")
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-plt.xlabel('Predicted')
-plt.ylabel('Actual')
-plt.title('Confusion Matrix')
-plt.show()
-
-# Accuracy Score
-accuracy = accuracy_score(y_test, y_pred)
-print(f'Accuracy: {accuracy:.2f}')
+88y8"8y|y8y8|"";8k}8IR8dy|8}8\yy8~8y8g}8k{}"8U8:]RtedEJHJLEJMtd{8j}}tyE|yE|yz}}F{:"{8U8s?h}y{}?D8?_{}?D8?Z|h}}?D8?kl{}?D8?a?D"88888888888?Zea?D8?\yz}}h}|}}^{?D8?Y}?D8?g{}?u"";8dy|8}8|yy}"|~8U8|F}y|w{@D8}y|}Uf}D8y}U{A"";8\y8}8~8~}88~8}8|yy}"@:^8M88~8}8|yy}R:A"@|~F}y|@AA"""|~F~@A""~8}yF}{}88ky|y|k{y}";8k}8JR8k8}8\yy88^}y}8y|8ly}"p8U8|~F|@?g{}?D8yUIA88;8^}y}"8U8|~s?g{}?u888888888888888;8ly}"";8k}8KR8Y8ky|y|8k{y88}8^}y}"{y}8U8ky|y|k{y}@A"pw{y}|8U8{y}F~wy~@pA""~8}yF|}w}}{88yw}w";8k}8LR8k8}8\yy88ly8y|8l}8k}"pwyD8pw}D8wyD8w}8U8yw}w@pw{y}|D8D8}w}UHFKD8y|wy}ULJA""@:ky}8~8pwyR:D8pwyFy}A"@:ky}8~8wyR:D8wyFy}A"@:ky}8~8pw}R:D8pw}Fy}A"@:ky}8~8w}R:D8w}Fy}A""~8}yF}yw|}88d{j}}";8k}8MR8ly8}8d{8j}}8e|}"|}8U8d{j}}@A"|}F~@pwyD8wyA"";8k}8NR8ey}8h}|{"w}|8U8|}F}|{@pw}A"";8k}8OR8]yy}8}8e|}"~8}yF}{88{~wyD8y{{y{w{}"";8[~8ey"{8U8{~wy@w}D8w}|A"@:8l}8{~8y8U:A"@{A""RGGF}}~}}FG}yzE}yyEyE{}}}E|}G""8}yz8y8"8yzF8y8"@:8l}8{~8y888}8y{y8~:A"F}yy@{D8yUl}D8~U?|?D8{yU?Z}?A"Fyz}@?h}|{}|?A"Fyz}@?Y{y?A"F}@?[~8ey?A"F@A"";8Y{{y{8k{}"y{{y{8U8y{{y{w{}@w}D8w}|A"@~?Y{{y{R8y{{y{RFJ~?A

@@ -1,58 +1,1 @@
-# Load libraries
-import pandas as pd
-from sklearn.datasets import load_iris 
-from sklearn.feature_selection import SelectKBest 
-from sklearn.feature_selection import f_classif
-
-# Load iris data into a dataframe
-iris_dataset = pd.read_csv("E:\ML-2024-25\Feature Engineering -Data Sets\Data\iris.csv")
-
-print('-------------------------------------------------------------------------')
-print('ORIGINAL DATASET')
-print('-------------------------------------------------------------------------')
-iris_dataset.head()
-
-# Create features and target 
-X = iris_dataset.iloc[:,1:5]
-Y = iris_dataset.iloc[:,-1] 
-
-https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html
-
-# to select the k most significant features we can use sklearn.feature_selection import SelectKBest.
-# syntax: SelectKBest(score_func=<function f_classif>, *, k=10)[source]
-# Parameters:
-# score_func : callable, default=f_classif
-    #Function taking two arrays X and y, and returning a pair of arrays (scores, pvalues) or a single array with scores.
-    # The default function only works with classification tasks.
-# k : int or “all”, default=10
-    #Number of top features to select.
-
-# Attributes:
-# scores_ : array-like of shape (n_features,)
-        #Scores of features.
-# pvalues_ : array-like of shape (n_features,)
-       #p-values of feature scores, None if score_func returned only scores.
-# feature_names_in_ : ndarray of shape (n_features_in_,)
-    # Names of features seen during fit. Defined only when X has feature names that are all strings.
-
-
-
-
-print('Before feature selection: shape-',X.shape)
-# configure to select all features
-fs = SelectKBest(score_func=f_classif, k=2)
-X_kbest_features =fs.fit_transform(X, Y) 
-print('After feature selection: shape-',X_kbest_features.shape)
-
-
-# what are scores for the features
-for i in range(len(fs.scores_)):
- print('Feature %d: %f' % (i, fs.scores_[i]))
-
-# plot the scores
-from matplotlib import pyplot
-pyplot.bar([i for i in range(len(fs.scores_))], fs.scores_)
-pyplot.show()
-
-selectedfetures=fs.get_feature_names_out()
-selectedfetures
+;8dy|8zy}"8y|y8y8|"~8}yF|yy}88y|w8"~8}yF~}y}w}}{88k}}{cZ}8"~8}yF~}y}w}}{88~w{y~"";8dy|88|yy88y8|yy~y}"w|yy}8U8|F}y|w{@:]RtedEJHJLEJMt^}y}8]}}8E\yy8k}t\yytF{:A""@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@?gja_afYd8\YlYk]l?A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"w|yy}F}y|@A"";8[}y}8~}y}8y|8y}8"p8U8w|yy}F{sRDIRMu"q8U8w|yy}F{sRDEIu8""RGG{E}yFGyz}G|}G}}y}|G}yF~}y}w}}{Fk}}{cZ}F"";88}}{8}888~{y8~}y}8}8{y8}8}yF~}y}w}}{88k}}{cZ}F";8yR8k}}{cZ}@{}w~{UT~{8~w{y~VD8BD8UIHAs{}u";8hyy}}R";8{}w~{8R8{yyz}D8|}~yU~w{y~"8888;^{8y88yy8p8y|8D8y|8}8y8y8~8yy8@{}D8y}A88y8}8yy88{}F"8888;8l}8|}~y8~{8888{y~{y8yF";88R8884y5D8|}~yUIH"8888;fz}8~88~}y}88}}{F"";8Yz}R";8{}w8R8yyE}8~8y}8@w~}y}DA"88888888;k{}8~8~}y}F";8y}w8R8yyE}8~8y}8@w~}y}DA"8888888;Ey}8~8~}y}8{}D8f}8~8{}w~{8}}|88{}F";8~}y}wy}ww8R8|yy8~8y}8@w~}y}wwDA"8888;8fy}8~8~}y}8}}8|8~F8\}~}|88}8p8y8~}y}8y}8y8y}8y8F"""""@?Z}~}8~}y}8}}{R8y}E?DpFy}A";8{~}88}}{8y8~}y}"~8U8k}}{cZ}@{}w~{U~w{y~D8UJA"pwz}w~}y}8U~F~wy~@pD8qA8"@?Y~}8~}y}8}}{R8y}E?Dpwz}w~}y}Fy}A""";8y8y}8{}8~8}8~}y}"~888y}@}@~F{}wAAR"8@?^}y}8=|R8=~?8=8@D8~F{}wsuAA"";88}8{}"~8yz88"Fzy@s8~888y}@}@~F{}wAAuD8~F{}wA"F@A""}}{}|~}}U~F}w~}y}wy}w@A"}}{}|~}}

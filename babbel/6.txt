@@ -1,85 +1,1 @@
-# Importing necessary libraries
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-%matplotlib inline
-#import warnings
-#warnings.filterwarnings('ignore')
-
-#### <font color='blue'>Read data</font>
-In this demo, we will use coronary heart disease (chd) dataset, which gives the details about the chances of having chd, given the age.
-
-chd = pd.read_csv("E:\ML-2024-25\Logistic Regression\chd_data.csv")
-
-chd.head() # Reading the first 5 rows
-
-#### <font color='blue'>Feature Engineering</font>
-Let us visualize the data to have insights on building the model.
-
-plt.scatter("age","chd",data=chd)
-plt.xlabel("age")
-plt.ylabel("chd")
-plt.title("Age vs. Coronary Heart Disease")
-
-#### <font color='blue'>Building Logistic Regression model</font>
-
-###### Splitting the data into train and test set
-
-# Importing the required class
-from sklearn.model_selection import train_test_split
-
-# Specifying the columns as predictor and target variable
-predictors = ["age"]
-target = "chd"
-
-X = chd[predictors] # X contains the predictor values or input data 
-y = chd[target] # y contains the target labels
-
-# Spliting the data in training and test set in 70:30 ratio
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-
-print("Shape of X_train:", X_train.shape)
-print("Shape of y_train:", y_train.shape)
-print("Shape of X_test:", X_test.shape)
-print("Shape of y_test:", y_test.shape)
-
-# Importing the required class
-from sklearn.linear_model import LogisticRegression
-
-# Creating the object of the class LogisticRegression
-model = LogisticRegression()
-
-# Fitting the model to the training data
-model.fit(X_train,y_train)
-
-# Getting the intercept and the coefficients of the model
-print("Intercept:",model.intercept_,"\nCoefficients:", model.coef_)
-
-# Predicting the probabilities for each of the class labels and the final class for a new data
-test=np.array([29]).reshape(1,-1)
-print("\nProbabilities:",model.predict_proba(test))
-print("\nChd value:",model.predict(test))
-
-#### <font color='blue'>Visualization</font>
-
-# Getting the probability for class label '1' for all the samples
-pred_test = model.predict_proba(X_test)[:,1]
-
-# Plotting the actual class labels or target values for the samples
-plt.scatter(X_test['age'],y_test, label = "actual target value")
-
-# Plotting the predicted probability for class label '1' for all the samples
-plt.scatter(X_test['age'],pred_test, label = "probability of class '1'",color = "orange", marker='o')
-
-# Adding the xlabel, ylabel, title and the legend
-plt.xlabel("age")
-plt.ylabel("chd")
-plt.title("Predicted probabilities")
-plt.legend()
-
-### Evaluating model performance
-
-Accuracy = no. of correct predictions / total predictions
-
-print("Accuracy score of the model on training data:", model.score(X_train, y_train))
-print("Accuracy score of the model on test data:", model.score(X_test, y_test))
+;8a8}{}y8zy}"88y8"8y|y8y8|"8yzF8y8"=yz8}";8y";yF~}y@?}?A"";;;;8T~8{U?z}?Vj}y|8|yyTG~V"a88|}D8}88}8{y8}y8|}y}8@{|A8|yy}D8{8}8}8|}y8yz8}8{y{}8~8y8{|D8}8}8y}F""{|8U8|F}y|w{@:]RtedEJHJLEJMtd{8j}}t{|w|yyF{:A""{|F}y|@A8;8j}y|8}8~8M8"";;;;8T~8{U?z}?V^}y}8]}}TG~V"d}88y}8}8|yy88y}888z|8}8|}F""F{y}@:y}:D:{|:D|yyU{|A"Fyz}@:y}:A"Fyz}@:{|:A"F}@:Y}8F8[y8`}y8\}y}:A"";;;;8T~8{U?z}?VZ|8d{8j}}8|}TG~V"";;;;;;8k8}8|yy88y8y|8}8}"";8a8}8}}|8{y"~8}yF|}w}}{88yw}w"";8k}{~8}8{8y8}|{8y|8y}8yyz}"}|{8U8s:y}:u"y}8U8:{|:""p8U8{|s}|{u8;8p8{y8}8}|{8y}888|yy8"8U8{|sy}u8;88{y8}8y}8yz}"";8k8}8|yy88y8y|8}8}88OHRKH8y"pwyD8pw}D8wyD8w}8U8yw}w@pD8D8}w}UHFKD8y|wy}UHA""@:ky}8~8pwyR:D8pwyFy}A"@:ky}8~8wyR:D8wyFy}A"@:ky}8~8pw}R:D8pw}Fy}A"@:ky}8~8w}R:D8w}Fy}A"";8a8}8}}|8{y"~8}yF}yw|}88d{j}}"";8[}y8}8z}{8~8}8{y8d{j}}"|}8U8d{j}}@A"";8^8}8|}88}8y8|yy"|}F~@pwyDwyA"";8_}8}8}{}8y|8}8{}~~{}8~8}8|}"@:a}{}R:D|}F}{}wD:t[}~~{}R:D8|}F{}~wA"";8h}|{8}8zyz}8~8}y{8~8}8{y8yz}8y|8}8~y8{y8~8y8}8|yy"}UFyy@sJQuAF}y}@IDEIA"@:thzyz}R:D|}F}|{wzy@}AA"@:t[|8y}R:D|}F}|{@}AA"";;;;8T~8{U?z}?VnyyTG~V"";8_}8}8zyz8~8{y8yz}8?I?8~8y8}8y}"}|w}8U8|}F}|{wzy@pw}AsRDIu"";8h8}8y{y8{y8yz}88y}8y}8~8}8y}"F{y}@pw}s?y}?uDw}D8yz}8U8:y{y8y}8y}:A"";8h8}8}|{}|8zyz8~8{y8yz}8?I?8~8y8}8y}"F{y}@pw}s?y}?uD}|w}D8yz}8U8:zyz8~8{y8?I?:D{8U8:y}:D8y}U??A"";8Y||8}8yz}D8yz}D8}8y|8}8}}|"Fyz}@:y}:A"Fyz}@:{|:A"F}@:h}|{}|8zyz}:A"F}}|@A"";;;8]yy8|}8}~y{}""Y{{y{8U8F8~8{}{8}|{8G8y8}|{""@:Y{{y{8{}8~8}8|}88y8|yyR:D8|}F{}@pwyD8wyAA"@:Y{{y{8{}8~8}8|}88}8|yyR:D8|}F{}@pw}D8w}AA

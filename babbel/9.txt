@@ -1,80 +1,1 @@
-# Importing the required libraries
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-In this notebook, we will consider computers dataset, which contains the details of time taken to repair a computer, given the number of units to be repaired.
-
-#### <font color='blue'>Read data</font>
-
-computers = pd.read_csv("E:\ML-2024-25\SimpleLinearRegression-Infy\Simple Linear Regression\datasets\computers.csv") # Reading data from input csv file
-
-computers.head() # Printing the first 5 rows
-
-# Calculating the mean.
-mean_value = computers['Minutes'].mean()
-
-mean_value
-
-### Building Regression model using Scikit-Learn Library
-
-# Importing the required class
-from sklearn.linear_model import LinearRegression
-
-# Setting the 'Units' column as the input data or predictor column
-X = computers[['Units']]
-
-# Setting the 'Minutes' column as the output data or target column
-y=computers['Minutes']
-
-# Creating a linear regression model
-model = LinearRegression()
-
-# Fitting the model to the data i.e. building the model
-model.fit(X, y)
-
-# Fetching intercept (b0) and coefficient (b1)
-print("Intercept:", model.intercept_)
-print("Coefficients:",model.coef_)
-
-c=model.intercept_
-m=model.coef_
-y_Pred = c + m*computers.Units
-computers['Predicted'] = y_Pred
-
-# Validating Model0: Estimated time = mean('Minutes')
-# Creating a Pandas DataFrame with 'Units', actual 'Minutes', predicted 'Minutes' by best_fit_model, error in prediction by Model0.
-
-model_data = pd.DataFrame({"Units":computers['Units'],
-              "Actual repair time":computers['Minutes'],
-              "Predicted repair time":computers['Predicted'],
-              "Error":(computers['Predicted'] - computers['Minutes'])})
-
-model_data # Printing the DataFrame
-
-#### <font color='blue'>Validation of best fit model</font>
-
-# Sum of errors
-sum(model_data['Error'])
-
-# SSE for the best fit model
-sum
-)
-
-#### <font color='blue'>Visualization of Models</font>
-
-fig,ax = plt.subplots()
-ax.scatter(x="Units",y="Minutes",data=computers)
-
-# Plotting the mean
-ax.axhline(y=mean_value,c="r")
-
-# Adding annotation, xlabel and ylabel.
-ax.annotate("Mean repair time",xy = (7.5,mean_value+2))
-
-ax.plot(computers.Units,computers.Predicted,color="green")
-
-ax.set_ylabel("Minutes")
-ax.set_xlabel("Units")
-ax.set_title("Best fit model line")
+;8a8}8}}|8zy}"88y8"8y|y8y8|"8yzF8y8"=yz8}""a88}zD8}88{|}8{}8|yy}D8{8{y8}8|}y8~8}8y}88}y8y8{}D8}8}8z}8~888z}8}y}|F"";;;;8T~8{U?z}?Vj}y|8|yyTG~V""{}8U8|F}y|w{@:]RtedEJHJLEJMtk}d}yj}}Ea~tk}8d}y8j}}t|yy}t{}F{:A8;8j}y|8|yy8~88{8~}""{}F}y|@A8;8h8}8~8M8"";8[y{y8}8}yF"}ywy}8U8{}s?e}?uF}y@A""}ywy}"";;;8Z|8j}}8|}88k{Ed}y8dzy"";8a8}8}}|8{y"~8}yF}yw|}88d}yj}}"";8k}8}8?m?8{8y8}88|yy88}|{8{"p8U8{}ss?m?uu"";8k}8}8?e}?8{8y8}88|yy88y}8{"U{}s?e}?u"";8[}y8y8}y8}}8|}"|}8U8d}yj}}@A"";8^8}8|}88}8|yy8F}F8z|8}8|}"|}F~@pD8A"";8^}{8}{}8@zHA8y|8{}~~{}8@zIA"@:a}{}R:D8|}F}{}wA"@:[}~~{}R:D|}F{}~wA""{U|}F}{}w"U|}F{}~w"wh}|8U8{8C8B{}Fm"{}s?h}|{}|?u8U8wh}|"";8ny|y8e|}HR8]y}|8}8U8}y@?e}?A";8[}y8y8hy|y8\yy^y}88?m?D8y{y8?e}?D8}|{}|8?e}?8z8z}w~w|}D8}88}|{8z8e|}HF""|}w|yy8U8|F\yy^y}@:m:R{}s?m?uD"88888888888888:Y{y8}y8}:R{}s?e}?uD"88888888888888:h}|{}|8}y8}:R{}s?h}|{}|?uD"88888888888888:]:R@{}s?h}|{}|?u8E8{}s?e}?uAA""|}w|yy8;8h8}8\yy^y}"";;;;8T~8{U?z}?Vny|y8~8z}8~8|}TG~V"";8k8~8}"@|}w|yys?]?uA"";8kk]8~8}8z}8~8|}""A"";;;;8T~8{U?z}?Vnyy8~8e|}TG~V""~Dy8U8Fz@A"yF{y}@U:m:DU:e}:D|yyU{}A"";8h8}8}y"yFy}@U}ywy}D{U::A"";8Y||8yyD8yz}8y|8yz}F"yFyy}@:e}y8}y8}:D8U8@OFMD}ywy}CJAA""yF@{}FmD{}Fh}|{}|D{U:}}:A""yF}wyz}@:e}:A"yF}wyz}@:m:A"yF}w}@:Z}8~8|}8}:A

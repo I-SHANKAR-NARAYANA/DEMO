@@ -1,88 +1,1 @@
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-# load dataset into Pandas DataFrame
-productdata = pd.read_csv(r"E:\ML-2024-25\Feature Engineering -Data Sets\Data\Qinspection.csv")
-print('-------------------------------------------------------------------------')
-print('ORIGINAL DATASET')
-print('-------------------------------------------------------------------------')
-print(productdata)
-
-productdata.info()
-
-productdata.describe()
-
-#-----------------------------------------------------------------------------------
-features = ['feature1', 'feature2', 'feature3', 'feature4','feature5','feature6']
-# Separating out the features
-predictor_Features=productdata.loc[:,features].values
-
-# Separating out the target
-classlabel = productdata.iloc[:,-1]
-#-----------------------------------------------------------------------------------
-
-# Standardizing the features
-std_predictor_Features = StandardScaler().fit_transform(predictor_Features)
-#-----------------------------------------------------------------------------------
-
-std_predictor_Features.dtype
-
-type(std_predictor_Features)
-
-std_predictor_Features
-
-# Converting standerdized predictor_Features matrix into DataFrame
-df = pd.DataFrame(std_predictor_Features)
-df.head(5)
-
-# Creating correlation matrix
-cor_matrix = df.corr().abs()
-print(cor_matrix); 
-
-type(cor_matrix)
-
-# this is an optional cell 
-# just to add labels for the rows and columns for better understanding of the correlation values
-ndf=pd.DataFrame(cor_matrix)
-ndf.columns=features
-ndf.index=features
-ndf
-
-# Make correlation matrix without duplicates
-# For this purpose triu() function is used which returns an upper triangular matrix with the shape of the correlation matrix
-# (Value 1 for elements above the main diagonal and 0 for others). 
-# The method astype() converts the matrix values to boolean. 
-
-# Selecting upper triangle of correlation matrix
-import numpy as np
-upper_cor_tri = cor_matrix.where(np.triu(np.ones(cor_matrix.shape),k=1).astype(bool))
-print('Upper diagonal corelation matrix '); 
-print(upper_cor_tri)
-print('-----------------------------\n')
-
-# Finding index of feature columns with correlation greater than 0.95
-to_drop = [column for column in upper_cor_tri.columns if any(upper_cor_tri[column] > 0.95)]
-print('index of correlated features to be dropped=',to_drop ); 
-print('-----------------------------\n')
-
-# Droping Marked Features
-df1 = df.drop(df.columns[to_drop], axis=1)
-print(' after dropping the corelated features'); 
-print(df1.head(5))
-#-------------------------------------
-
-#-------------------------------------
-#convert label to dataframe
-dflabel=pd.DataFrame(classlabel)
-#concatenate selected features and class label
-dfnew=pd.concat([df1,dflabel],axis=1)
-print(dfnew.head())
-
-
-#Convert to 1-D series and drop Null values 
-unique_corr_pairs = upper_cor_tri.unstack().dropna() 
-
-#Convert correlation matrix to 1-D Series and sort 
-sorted_mat = unique_corr_pairs.sort_values() 
-  
-print(sorted_mat) 
+8y|y8y8|"88y8"~8}yF}{}88ky|y|k{y}";8y|8|yy}88hy|y8\yy^y}"|{|yy8U8|F}y|w{@:]RtedEJHJLEJMt^}y}8]}}8E\yy8k}t\yyti}{F{:A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@?gja_afYd8\YlYk]l?A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@|{|yyA""|{|yyF~@A""|{|yyF|}{z}@A"";EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"~}y}8U8s?~}y}I?D8?~}y}J?D8?~}y}K?D8?~}y}L?D?~}y}M?D?~}y}N?u";8k}yy88}8~}y}"}|{w^}y}U|{|yyF{sRD~}y}uFy}"";8k}yy88}8y}"{yyz}8U8|{|yyF{sRDEIu";EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"";8ky|y|8}8~}y}"|w}|{w^}y}8U8ky|y|k{y}@AF~wy~@}|{w^}y}A";EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE""|w}|{w^}y}F|}""}@|w}|{w^}y}A""|w}|{w^}y}"";8[}8y|}|}|8}|{w^}y}8y88\yy^y}"|~8U8|F\yy^y}@|w}|{w^}y}A"|~F}y|@MA"";8[}y8{}y8y"{wy8U8|~F{@AFyz@A"@{wyAS8""}@{wyA"";888y8y8{}8";888y||8yz}8~8}88y|8{8~8z}}8|}y|8~8}8{}y8y}"|~U|F\yy^y}@{wyA"|~F{U~}y}"|~F|}U~}y}"|~"";8ey}8{}y8y88|{y}";8^88}8@A8~{88}|8{8}8y8}8yy8y88}8y}8~8}8{}y8y";8@ny}8I8~8}}}8yz}8}8y8|yy8y|8H8~8}AF8";8l}8}|8y}@A8{}8}8y8y}88z}yF8"";8k}}{8}8y}8~8{}y8y"88y8"}w{w8U8{wyF}}@F@F}@{wyFy}ADUIAFy}@zAA"@?m}8|yy8{}y8y8?AS8"@}w{wA"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A"";8^|8|}8~8~}y}8{88{}y8}y}8y8HFQM"w|8U8s{8~8{88}w{wF{8~8y@}w{ws{u8V8HFQMAu"@?|}8~8{}y}|8~}y}88z}8|}|U?Dw|8AS8"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A"";8\8ey}|8^}y}"|~I8U8|~F|@|~F{sw|uD8yUIA"@?8y~}8|8}8{}y}|8~}y}?AS8"@|~IF}y|@MAA";EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"";EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";{}8yz}88|yy~y}"|~yz}U|F\yy^y}@{yyz}A";{{y}y}8}}{}|8~}y}8y|8{y8yz}"|~}U|F{{y@s|~ID|~yz}uDyUIA"@|~}F}y|@AA""";[}88IE\8}}8y|8|8f8y}8"}w{wy8U8}w{wFy{@AF|y@A8"";[}8{}y8y88IE\8k}}8y|88"}|wy8U8}w{wyFwy}@A8"88"@}|wyA8

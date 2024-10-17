@@ -1,35 +1,1 @@
-# Load libraries 
-import pandas as pd
-from sklearn.datasets import load_iris 
-from sklearn.feature_selection import SelectKBest 
-from sklearn.feature_selection import chi2 
-
-# Load iris data into a dataframe
-iris_dataset = pd.read_csv("E:\ML-2024-25\Feature Engineering -Data Sets\Data\iris.csv")
-
-print('-------------------------------------------------------------------------')
-print('ORIGINAL DATASET')
-print('-------------------------------------------------------------------------')
-iris_dataset.head()
-
-iris_dataset.info()
-
-# Create features and target 
-X = iris_dataset.iloc[:,1:5]
-y = iris_dataset.iloc[:,-1] 
-  
-# Two features with highest chi-squared statistics are selected 
-chi2_features = SelectKBest(chi2, k = 2) 
-X_kbest_features = chi2_features.fit_transform(X, y) 
-  
-# Reduced features 
-print('Original feature number:', X.shape[1]) 
-print('Reduced feature number:', X_kbest_features.shape[1]) 
-
-
-# what are scores for the features
-for i in range(len(chi2_features.scores_)):
- print('Feature %d: %f' % (i, chi2_features.scores_[i]))
-
-selectedfetures=chi2_features.get_feature_names_out()
-selectedfetures
+;8dy|8zy}8"8y|y8y8|"~8}yF|yy}88y|w8"~8}yF~}y}w}}{88k}}{cZ}8"~8}yF~}y}w}}{88{J8"";8dy|88|yy88y8|yy~y}"w|yy}8U8|F}y|w{@:]RtedEJHJLEJMt^}y}8]}}8E\yy8k}t\yytF{:A""@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"@?gja_afYd8\YlYk]l?A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A"w|yy}F}y|@A""w|yy}F~@A"";8[}y}8~}y}8y|8y}8"p8U8w|yy}F{sRDIRMu"8U8w|yy}F{sRDEIu8"88";8l8~}y}88}8{Ey}|8y{8y}8}}{}|8"{Jw~}y}8U8k}}{cZ}@{JD88U8JA8"pwz}w~}y}8U8{Jw~}y}F~wy~@pD8A8"88";8j}|{}|8~}y}8"@?gy8~}y}8z}R?D8pFy}sIuA8"@?j}|{}|8~}y}8z}R?D8pwz}w~}y}Fy}sIuA8""";8y8y}8{}8~8}8~}y}"~888y}@}@{Jw~}y}F{}wAAR"8@?^}y}8=|R8=~?8=8@D8{Jw~}y}F{}wsuAA""}}{}|~}}U{Jw~}y}F}w~}y}wy}w@A"}}{}|~}}

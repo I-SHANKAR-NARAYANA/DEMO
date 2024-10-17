@@ -1,54 +1,1 @@
-TERMINAL1
-start mongod --replSet m101 -logpath \data\rs1\1.log --dbpath \data\rs1 --port 27020
-
-
-TERMINAL2
-
-start mongod --replSet m101 -logpath \data\rs2\2.log --dbpath \data\rs2 --port 27021
-
-
-TERMINAL3
-
-start mongod --replSet m101 -logpath \data\rs3\3.log --dbpath \data\rs3 --port 27022
-
-
-TERMINAL1
-
-mongosh --port 27020
-
-config = { _id: "m101", members:[
-          { _id : 0, host : "localhost:27020"},
-          { _id : 1, host : "localhost:27021"},
-          { _id : 2, host : "localhost:27022"} ]
-         };
-
-
-rs.initiate(config);
-rs.status();
-
-use cbit
-db.it3.find();
-
-TERMINAL2
-
-mongosh --port 27021
-rs.secondaryOk()
-db.products.find();
-
-TERMINAL3
-
-mongosh --port 27022
-rs.secondaryOk()
-db.products.find();
-
-
-TERMINAL1
-
-use admin;
-db.shutdownServer();
-
-
-
-open a TERMINAL2 & TERMINAL3
-
-rs.status();
+l]jeafYdI"y8|8EE}k}8IHI8Ey8t|yytItIF8EE|zy8t|yytI8EE8JOHJH"""l]jeafYdJ""y8|8EE}k}8IHI8Ey8t|yytJtJF8EE|zy8t|yytJ8EE8JOHJI"""l]jeafYdK""y8|8EE}k}8IHI8Ey8t|yytKtKF8EE|zy8t|yytK8EE8JOHJJ"""l]jeafYdI""8EE8JOHJH""{~8U88w|R8:IHI:D8}z}Rs"88888888888w|8R8HD88R8:{yRJOHJH:D"88888888888w|8R8ID88R8:{yRJOHJI:D"88888888888w|8R8JD88R8:{yRJOHJJ:8u"888888888S"""Fy}@{~AS"Fy@AS""}8{z"|zFKF~|@AS""l]jeafYdJ""8EE8JOHJI"F}{|yg@A"|zF|{F~|@AS""l]jeafYdK""8EE8JOHJJ"F}{|yg@A"|zF|{F~|@AS"""l]jeafYdI""}8y|S"|zF|k}}@AS""""}8y8l]jeafYdJ8>8l]jeafYdK""Fy@AS"

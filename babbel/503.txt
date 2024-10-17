@@ -1,110 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Login</title>
-</head>
-<body>
-    <div class="form-container">
-        <h2>Login</h2>
-        <form onSubmit="verify()">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Register</title>
-</head>
-<body>
-    <div class="form-container">
-        <h2>Register</h2>
-        <form onSubmit="validate()">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-</body>
-</html>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.form-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="text"] {
-    /* width: 100%; */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
+T9\g[lqh]8V"T8yU:}:V"T}y|V"8888T}y8{y}U:ml^EP:V"8888T}y8y}U:}:8{}U:|U|}{}E|D8yE{y}UIFH:V"8888T8}U:}}}:8}~U:}F{:V"8888T}VdTG}V"TG}y|V"Tz|V"8888T|8{yU:~E{y}:V"88888888TJVdTGJV"88888888T~8kzU:}~@A:V"888888888888T|8{yU:~E:V"8888888888888888Tyz}8~U:}y:V]yRTGyz}V"8888888888888888T8}U:}y:8|U:}y:8y}U:}y:8}}|V"888888888888TG|V"888888888888T|8{yU:~E:V"8888888888888888Tyz}8~U:y|:Vhy|RTGyz}V"8888888888888888T8}U:y|:8|U:y|:8y}U:y|:8}}|V"888888888888TG|V"888888888888Tz8}U:z:VdTGzV"88888888TG~V"8888TG|V"TGz|V"TGV"T9\g[lqh]8V"T8yU:}:V"T}y|V"8888T}y8{y}U:ml^EP:V"8888T}y8y}U:}:8{}U:|U|}{}E|D8yE{y}UIFH:V"8888T8}U:}}}:8}~U:}F{:V"8888T}Vj}}TG}V"TG}y|V"Tz|V"8888T|8{yU:~E{y}:V"88888888TJVj}}TGJV"88888888T~8kzU:y|y}@A:V"888888888888T|8{yU:~E:V"8888888888888888Tyz}8~U:}y}:Vm}y}RTGyz}V"8888888888888888T8}U:}:8|U:}y}:8y}U:}y}:8}}|V"888888888888TG|V"888888888888T|8{yU:~E:V"8888888888888888Tyz}8~U:}y:V]yRTGyz}V"8888888888888888T8}U:}y:8|U:}y:8y}U:}y:8}}|V"888888888888TG|V"888888888888T|8{yU:~E:V"8888888888888888Tyz}8~U:y|:Vhy|RTGyz}V"8888888888888888T8}U:y|:8|U:y|:8y}U:y|:8}}|V"888888888888TG|V"888888888888Tz8}U:z:Vj}}TGzV"88888888TG~V"8888TG|V"TGz|V"TGV"z|8"8888~E~yR8YyD8yE}~S"8888zy{|E{R8;~H~H~HS"8888|yR8~}S"8888~E{}R8{}}S"8888yE}R8{}}S"8888}R8IHHS"8888yR8HS"""F~E{y}8"8888zy{|E{R8}S"8888y||R8JHS"8888z|}Ey|R8PS"8888zEy|R8H8H8IH8zy@HD8HD8HD8HFIAS"8888|R8KHHS"""J8"8888}EyR8{}}S"8888{R8;KKKS"""F~E8"8888yEzR8IMS"""yz}8"8888|yR8z{S"8888yEzR8MS"8888{R8;MMMS"""s}U:}y:uD"s}U:y|:uD"s}U:}:u8"8888GB8|R8IHH=S8BG"8888y||R8IHS"8888z|}R8I8|8;|||S"8888z|}Ey|R8LS"""z8"8888|R8IHH=S"8888y||R8IHS"8888zy{|E{R8;JPyOLMS"8888z|}R8}S"8888z|}Ey|R8LS"8888{R8}S"8888~E}R8INS"8888{R8}S"""zR}8"8888zy{|E{R8;JIPPKPS""

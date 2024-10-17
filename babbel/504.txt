@@ -1,102 +1,1 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const alienRoutes = require('./controller/controller')
-
-const app = express();
-
-app.use(bodyParser.json());
-
-
-// const url = "mongodb://localhost:27017/aliens"
-const url = "mongodb://127.0.0.1:27020,127.0.0.1:27021,127.0.0.1:27022/aliens?replicaSet=m101"
-mongoose.connect(url)
-.then(() => {
-  console.log('Connected to MongoDB');
-}).catch(err => {
-  console.error('Failed to connect to MongoDB', err);
-});
-
-app.use('/api/aliens', alienRoutes);
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-const mongoose = require('mongoose');
-
-const alienSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    required: true
-  },
-  grade: {
-    type: String,
-    required: true
-  }
-});
-
-const Alien = mongoose.model('Alien', alienSchema);
-
-module.exports = Alien;
-const express = require('express');
-const router = express.Router();
-const Alien = require('../models/alien');
-
-router.post('/', async (req, res) => {
-  try {
-    const alien = new Alien(req.body);
-    await alien.save();
-    res.status(201).send(alien);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-    const aliens = await Alien.find();
-    res.status(200).send(aliens);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-router.get('/:id', async (req, res) => {
-  try {
-    const alien = await Alien.findById(req.params.id);
-    if (!alien) return res.status(404).send();
-    res.status(200).send(alien);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-router.patch('/:id', async (req, res) => {
-  try {
-    const alien = await Alien.findById(req.params.id);
-    if (!alien) return res.status(404).send();
-    alien.grade = req.body.grade;
-    alien.age = req.body.age;
-    updatedAlien = await alien.save();
-    res.status(200).send(updatedAlien);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-router.delete('/:id', async (req, res) => {
-  try {
-    const alien = await Alien.findByIdAndDelete(req.params.id);
-    if (!alien) return res.status(404).send();
-    res.status(200).send(alien);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-module.exports = router;
+{8}}8U8}}@?}}?AS"{8z|hy}8U8}}@?z|Ey}?AS"{8}8U8}}@?}?AS"{8y}j}8U8}}@?FG{}G{}?A""{8y8U8}}@AS""yF}@z|hy}F@AAS"""GG8{88U8:|zRGG{yRJOHIOGy}:"{88U8:|zRGGIJOFHFHFIRJOHJHDIJOFHFHFIRJOHJIDIJOFHFHFIRJOHJJGy}W}{yk}UIHI:"}F{}{@A"F}@@A8UV8"88{}F@?[}{}|88e\Z?AS"AF{y{@}8UV8"88{}F}@?^y}|88{}{88e\Z?D8}AS"AS""yF}@?GyGy}?D8y}j}AS""{8hgjl8U8KHHHS"yF}@hgjlD8@A8UV8"88{}F@xk}}8888<hgjlxAS"AS"{8}8U8}}@?}?AS""{8y}k{}y8U8}8}Fk{}y@"88y}R8"8888}R8kD"8888}}|R8}"88D"88y}R8"8888}R8fz}D"8888}}|R8}"88D"88y|}R8"8888}R8kD"8888}}|R8}"88"AS""{8Y}8U8}F|}@?Y}?D8y}k{}yAS""|}F}8U8Y}S"{8}}8U8}}@?}}?AS"{8}8U8}}Fj}@AS"{8Y}8U8}}@?FFG|}Gy}?AS""}F@?G?D8y{8@}D8}A8UV8"888"8888{8y}8U8}8Y}@}Fz|AS"8888yy8y}Fy}@AS"8888}Fy@JHIAF}|@y}AS"888{y{8@}A8"8888}Fy@LHHAF}|@}AS"88"AS""}F}@?G?D8y{8@}D8}A8UV8"888"8888{8y}8U8yy8Y}F~|@AS"8888}Fy@JHHAF}|@y}AS"888{y{8@}A8"8888}Fy@MHHAF}|@}AS"88"AS""}F}@?GR|?D8y{8@}D8}A8UV8"888"8888{8y}8U8yy8Y}F~|Za|@}FyyF|AS"8888~8@9y}A8}8}Fy@LHLAF}|@AS"8888}Fy@JHHAF}|@y}AS"888{y{8@}A8"8888}Fy@MHHAF}|@}AS"88"AS""}Fy{@?GR|?D8y{8@}D8}A8UV8"888"8888{8y}8U8yy8Y}F~|Za|@}FyyF|AS"8888~8@9y}A8}8}Fy@LHLAF}|@AS"8888y}Fy|}8U8}Fz|Fy|}S"8888y}Fy}8U8}Fz|Fy}S"8888|y}|Y}8U8yy8y}Fy}@AS"8888}Fy@JHHAF}|@|y}|Y}AS"888{y{8@}A8"8888}Fy@LHHAF}|@}AS"88"AS""}F|}}}@?GR|?D8y{8@}D8}A8UV8"888"8888{8y}8U8yy8Y}F~|Za|Y|\}}}@}FyyF|AS"8888~8@9y}A8}8}Fy@LHLAF}|@AS"8888}Fy@JHHAF}|@y}AS"888{y{8@}A8"8888}Fy@MHHAF}|@}AS"88"AS""|}F}8U8}S"

@@ -1,35 +1,1 @@
-import numpy as np
-import pandas as pd
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-
-iris = datasets.load_iris()
-X = iris.data[:, :4]  # we only take the first 4 features.
-y = iris.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
-
-lda = LDA(n_components=1)
-X_train = lda.fit_transform(X_train, y_train)
-
-X_test = lda.transform(X_test)
-
-classifier = RandomForestClassifier(max_depth=2, random_state=0)
-classifier.fit(X_train, y_train)
-
-y_pred = classifier.predict(X_test)
-
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-
-print('Accuracy' + str(accuracy_score(y_test, y_pred)))
+88y8"8y|y8y8|"~8}y88|yy}"~8}yF|}w}}{88yw}w"~8}yF}{}88ky|y|k{y}""8U8|yy}Fy|w@A"p8U8F|yysRD8RLu88;8}88y}8}8~8L8~}y}F"8U8Fy}""pwyD8pw}D8wyD8w}8U8yw}w@pD8D8}w}UHFJD8y|wy}UHA""{8U8ky|y|k{y}@A"pwy8U8{F~wy~@pwyA"pw}8U8{Fy~@pw}A""~8}yF|{ywyy88d}y\{yYy8y8d\Y"~8}yF}{88{~wy"~8}yF}{88y{{y{w{}"~8}yF}}z}88jy|^}[y~}""|y8U8d\Y@w{}UIA"pwy8U8|yF~wy~@pwyD8wyA""pw}8U8|yFy~@pw}A""{y~}8U8jy|^}[y~}@yw|}UJD8y|wy}UHA"{y~}F~@pwyD8wyA""w}|8U8{y~}F}|{@pw}A""{8U8{~wy@w}D8w}|A"@{A""@?Y{{y{?8C8@y{{y{w{}@w}D8w}|AAA"

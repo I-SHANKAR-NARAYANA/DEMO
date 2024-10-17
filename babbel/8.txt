@@ -1,57 +1,1 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-
-# Step 1: Data
-X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)  # Hours Studied (Independent Variable)
-Y = np.array([50, 55, 65, 70, 75])            # Score (Dependent Variable)
-
-# Step 2: Fit the Linear Regression Model
-model = LinearRegression()
-model.fit(X, Y)
-
-
-
-# Step 3: Make Predictions
-Y_pred = model.predict(X)  # Predictions for the original data
-
-# Predicting the score for a new data point (e.g., 6 hours studied)
-new_data = np.array([6]).reshape(-1, 1)
-new_prediction = model.predict(new_data)
-
-# Step 4: Evaluation Metrics
-mae = mean_absolute_error(Y, Y_pred)
-mse = mean_squared_error(Y, Y_pred)
-rmse = np.sqrt(mse)
-
-r2 = r2_score(Y, Y_pred)
-# Adjusted R-squared Calculation
-n = len(Y)
-k = 1  # Number of predictors
-adjusted_r2 = 1 - ((1 - r2) * (n - 1) / (n - k - 1))
-
-# Print Evaluation Metrics
-print(f"Mean Absolute Error (MAE): {mae}")
-print(f"Mean Squared Error (MSE): {mse}")
-print(f"Root Mean Squared Error (RMSE): {rmse}")
-print(f"R-squared (R2): {r2}")
-print(f"Adjusted R-squared: {adjusted_r2}")
-
-# Display original and predicted values
-print("\nOriginal vs Predicted Scores:")
-for i in range(len(X)):
-    print(f"Hours Studied: {X[i][0]}, Actual Score: {Y[i]}, Predicted Score: {Y_pred[i]:.2f}")
-
-# Display prediction for new data
-print(f"\nPrediction for new data (6 hours studied): {new_prediction[0]:.2f} score")
-
-# Step 5: Visualize the Regression Line
-plt.scatter(X, Y, color='blue', label='Actual Data')
-plt.plot(X, Y_pred, color='red', label='Regression Line')
-plt.scatter(new_data, new_prediction, color='green', label='New Prediction (6 hours)')
-plt.xlabel('Hours Studied')
-plt.ylabel('Score')
-plt.title('Simple Linear Regression')
-plt.legend()
-plt.show()
+88y8"8yzF8y8"~8}yF}yw|}88d}yj}}"~8}yF}{88}ywyz}w}D8}ywy}|w}D8Jw{}"";8k}8IR8\yy"p8U8Fyy@sID8JD8KD8LD8MuAF}y}@EID8IA88;8`8k|}|8@a|}}|}8nyyz}A"q8U8Fyy@sMHD8MMD8NMD8OHD8OMuA888888888888;8k{}8@\}}|}8nyyz}A"";8k}8JR8^8}8d}y8j}}8e|}"|}8U8d}yj}}@A"|}F~@pD8qA"""";8k}8KR8ey}8h}|{"qw}|8U8|}F}|{@pA88;8h}|{8~8}8y8|yy"";8h}|{8}8{}8~8y8}8|yy88@}FFD8N88|}|A"}w|yy8U8Fyy@sNuAF}y}@EID8IA"}w}|{8U8|}F}|{@}w|yyA"";8k}8LR8]yy8e}{"y}8U8}ywyz}w}@qD8qw}|A"}8U8}ywy}|w}@qD8qw}|A"}8U8F@}A""J8U8Jw{}@qD8qw}|A";8Y|}|8jEy}|8[y{y"8U8}@qA"8U8I88;8fz}8~8}|{"y|}|wJ8U8I8E8@@I8E8JA8B8@8E8IA8G8@8E88E8IAA"";8h8]yy8e}{"@~:e}y8Yz}8]8@eY]AR8y}:A"@~:e}y8ky}|8]8@ek]AR8}:A"@~:j8e}y8ky}|8]8@jek]AR8}:A"@~:jEy}|8@jJAR8J:A"@~:Y|}|8jEy}|R8y|}|wJ:A"";8\y8y8y|8}|{}|8y}"@:tgy88h}|{}|8k{}R:A"~888y}@}@pAAR"8888@~:`8k|}|R8psusHuD8Y{y8k{}R8qsuD8h}|{}|8k{}R8qw}|suRFJ~:A"";8\y8}|{8~8}8|yy"@~:th}|{8~8}8|yy8@N88|}|AR8}w}|{sHuRFJ~8{}:A"";8k}8MR8ny}8}8j}}8d}"F{y}@pD8qD8{U?z}?D8yz}U?Y{y8\yy?A"F@pD8qw}|D8{U?}|?D8yz}U?j}}8d}?A"F{y}@}w|yyD8}w}|{D8{U?}}?D8yz}U?f}8h}|{8@N8A?A"Fyz}@?`8k|}|?A"Fyz}@?k{}?A"F}@?k}8d}y8j}}?A"F}}|@A"F@A"

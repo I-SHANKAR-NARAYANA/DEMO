@@ -1,49 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        body { display: flex; flex-direction: column; padding: 20px; gap: 20px; }
-        #calc { display: grid; grid-template-columns: repeat(4, 50px); gap:20px; }
-        button { font-size: 20px; text-align: center; padding: 10px; }
-        #display { font-size: 20px; text-align: right; padding: 10px; max-width: fit-content; }
-    </style>
-</head>
-<body>
-    <input type="text" id="display" readonly>
-    <div id="calc">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button onclick="appendToDisplay('/')">/</button>
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button onclick="appendToDisplay('*')">*</button>
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button onclick="appendToDisplay('-')">-</button>
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="appendToDisplay('+')">+</button>
-    </div>
-    <script src="calculator.js"></script>
-</body>
-</html>
-function appendToDisplay(value) {
-    document.getElementById("display").value += value;
-}
-
-function clearDisplay() {
-    document.getElementById("display").value = '';
-}
-
-function calculate() {
-    let result = eval(document.getElementById("display").value);
-    document.getElementById("display").value = result;
-}
+T9\g[lqh]8V"T8yU:}:V"T}y|V"8888T}y8{y}U:ml^EP:V"8888T}y8y}U:}:8{}U:|U|}{}E|D8yE{y}UIFH:V"8888T}V[y{yTG}V"8888T}V"88888888z|88|yR8~}S8~}E|}{R8{S8y||R8JHS8yR8JHS8"88888888;{y{88|yR8|S8|E}y}E{R8}}y@LD8MHAS8yRJHS8"88888888z88~E}R8JHS8}EyR8{}}S8y||R8IHS8"88888888;|y88~E}R8JHS8}EyR8S8y||R8IHS8yE|R8~E{}S8"8888TG}V"TG}y|V"Tz|V"8888T8}U:}:8|U:|y:8}y|V"8888T|8|U:{y{:V"88888888Tz8{{U:{}y\y@A:V[TGzV"88888888Tz8{{U:y}|l\y@?O?A:VOTGzV"88888888Tz8{{U:y}|l\y@?P?A:VPTGzV"88888888Tz8{{U:y}|l\y@?Q?A:VQTGzV"88888888Tz8{{U:y}|l\y@?G?A:VGTGzV"88888888Tz8{{U:y}|l\y@?L?A:VLTGzV"88888888Tz8{{U:y}|l\y@?M?A:VMTGzV"88888888Tz8{{U:y}|l\y@?N?A:VNTGzV"88888888Tz8{{U:y}|l\y@?B?A:VBTGzV"88888888Tz8{{U:y}|l\y@?I?A:VITGzV"88888888Tz8{{U:y}|l\y@?J?A:VJTGzV"88888888Tz8{{U:y}|l\y@?K?A:VKTGzV"88888888Tz8{{U:y}|l\y@?E?A:VETGzV"88888888Tz8{{U:y}|l\y@?H?A:VHTGzV"88888888Tz8{{U:y}|l\y@?F?A:VFTGzV"88888888Tz8{{U:{y{y}@A:VUTGzV"88888888Tz8{{U:y}|l\y@?C?A:VCTGzV"8888TG|V"8888T{8{U:{y{yF:VTG{V"TGz|V"TGV"~{8y}|l\y@y}A8"8888|{}F}]}}Za|@:|y:AFy}8CU8y}S"""~{8{}y\y@A8"8888|{}F}]}}Za|@:|y:AFy}8U8??S"""~{8{y{y}@A8"8888}8}8U8}y@|{}F}]}}Za|@:|y:AFy}AS"8888|{}F}]}}Za|@:|y:AFy}8U8}S""

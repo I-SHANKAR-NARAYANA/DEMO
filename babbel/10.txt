@@ -1,82 +1,1 @@
-import numpy as np
-import pandas as pd
-from sklearn import datasets
-from sklearn.preprocessing import StandardScaler
-
-iris = datasets.load_iris()
-type(iris)
-
-X = iris.data[:, :4]  # we only take the first four features.
-X
-
-y = iris.target
-y
-
-# Splitting the dataset into the Training set and Test set
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-
-from sklearn.decomposition import PCA
-pca4 = PCA()
-X_train = pca4.fit_transform(X_train)
-X_test = pca4.transform(X_test)
-
-#Variance preserved by each PC
-explained_variance = pca4.explained_variance_ratio_
-print('explained variance=',explained_variance)
-print('----------------------------------------')
-
-from sklearn.ensemble import RandomForestClassifier
-#Training and Making Predictions
-classifier = RandomForestClassifier(max_depth=2, random_state=0)
-classifier.fit(X_train, y_train)
-
-# Predicting the Test set results
-y_pred = classifier.predict(X_test)
-
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-
-#Performance Evaluation
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-print('----------------------------\n')
-print('Accuracy=' + str(accuracy_score(y_test, y_pred)))
-
-pca2 = PCA(n_components=2)
-X_train = pca2.fit_transform(X_train)
-X_test = pca2.transform(X_test)
-explained_variance = pca2.explained_variance_ratio_
-print('explained variance=',explained_variance)
-print('----------------------------\n')
-
-classifier = RandomForestClassifier(max_depth=2, random_state=0)
-classifier.fit(X_train, y_train)
-# Predicting the Test set results
-y_pred = classifier.predict(X_test)
-
-#Performance evaluation with 2 components
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-print('----------------------------\n')
-print('Accuracy=' + str(accuracy_score(y_test, y_pred)))
-
-pca1 = PCA(n_components=1)
-X_train = pca1.fit_transform(X_train)
-X_test = pca1.transform(X_test)
-explained_variance = pca1.explained_variance_ratio_
-print('explained variance=',explained_variance)
-classifier = RandomForestClassifier(max_depth=2, random_state=0)
-classifier.fit(X_train, y_train)
-# Predicting the Test set results
-y_pred = classifier.predict(X_test)
-# Performance evaluation with 1 components
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-print('----------------------------\n')
-print('Accuracy=' + str(accuracy_score(y_test, y_pred)))
+88y8"8y|y8y8|"~8}y88|yy}"~8}yF}{}88ky|y|k{y}""8U8|yy}Fy|w@A"}@A""p8U8F|yysRD8RLu88;8}88y}8}8~8~8~}y}F"p""8U8Fy}""";8k8}8|yy}88}8ly8}8y|8l}8}"~8}yF|}w}}{88yw}w"pwyD8pw}D8wyD8w}8U8yw}w@pD8D8}w}UHFJD8y|wy}UHA""~8}yF}{}88ky|y|k{y}"{8U8ky|y|k{y}@A"pwy8U8{F~wy~@pwyA"pw}8U8{Fy~@pw}A""~8}yF|}{88h[Y"{yL8U8h[Y@A"pwy8U8{yLF~wy~@pwyA"pw}8U8{yLFy~@pw}A"";nyy{}8}}}|8z8}y{8h["}y}|wyy{}8U8{yLF}y}|wyy{}wyw"@?}y}|8yy{}U?D}y}|wyy{}A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE?A""~8}yF}}z}88jy|^}[y~}";ly8y|8ey8h}|{"{y~}8U8jy|^}[y~}@yw|}UJD8y|wy}UHA"{y~}F~@pwyD8wyA"";8h}|{8}8l}8}8}"w}|8U8{y~}F}|{@pw}A""~8}yF}{88{~wy"~8}yF}{88y{{y{w{}"";h}~y{}8]yy"{8U8{~wy@w}D8w}|A"@{A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A"@?Y{{y{U?8C8@y{{y{w{}@w}D8w}|AAA""{yJ8U8h[Y@w{}UJA"pwy8U8{yJF~wy~@pwyA"pw}8U8{yJFy~@pw}A"}y}|wyy{}8U8{yJF}y}|wyy{}wyw"@?}y}|8yy{}U?D}y}|wyy{}A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A""{y~}8U8jy|^}[y~}@yw|}UJD8y|wy}UHA"{y~}F~@pwyD8wyA";8h}|{8}8l}8}8}"w}|8U8{y~}F}|{@pw}A"";h}~y{}8}yy88J8{}"{8U8{~wy@w}D8w}|A"@{A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A"@?Y{{y{U?8C8@y{{y{w{}@w}D8w}|AAA""{yI8U8h[Y@w{}UIA"pwy8U8{yIF~wy~@pwyA"pw}8U8{yIFy~@pw}A"}y}|wyy{}8U8{yIF}y}|wyy{}wyw"@?}y}|8yy{}U?D}y}|wyy{}A"{y~}8U8jy|^}[y~}@yw|}UJD8y|wy}UHA"{y~}F~@pwyD8wyA";8h}|{8}8l}8}8}"w}|8U8{y~}F}|{@pw}A";8h}~y{}8}yy88I8{}"{8U8{~wy@w}D8w}|A"@{A"@?EEEEEEEEEEEEEEEEEEEEEEEEEEEEt?A"@?Y{{y{U?8C8@y{{y{w{}@w}D8w}|AAA"
