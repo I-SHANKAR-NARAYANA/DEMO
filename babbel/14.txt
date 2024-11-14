@@ -1,0 +1,220 @@
+class OnlineStore {
+    public void storeInfo() {
+        System.out.println("Welcome to the online store");
+    }
+}
+
+class Product extends OnlineStore {
+    public void showProduct() {
+        System.out.println("Displaying product information");
+    }
+}
+
+class Cart extends OnlineStore {
+    public void addToCart() {
+        System.out.println("Product added to cart");
+    }
+}
+
+public class OnlineShoppingSystem {
+    public static void main(String[] args) {
+        System.out.println("Online Shopping System");
+
+        Product p = new Product();
+        p.storeInfo();
+        p.showProduct();
+
+        Cart c = new Cart();
+        c.storeInfo();
+        c.addToCart();
+    }
+}
+
+class School {
+    public void name() {
+        System.out.println("I study in Rosary Convent High School");
+    }
+    
+    public void teach() {
+        System.out.println("I teach in Rosary Convent High School");
+    }
+}
+
+class Student extends School {
+    public void kid() {
+        System.out.println("I am a student");
+    }
+}
+
+class Teacher extends School {
+    public void faculty() {
+        System.out.println("I am a teacher");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+
+        Student s = new Student();
+        s.name();
+        s.kid();
+
+        Teacher t = new Teacher();
+        t.faculty();
+        t.teach();
+    }
+}
+[13/11, 9:36 pm] Chaitanyya: class Employee {
+    public void employeeDetails() {
+        System.out.println("Employee Details");
+    }
+}
+
+class Manager extends Employee {
+    public void manage() {
+        System.out.println("I am a manager");
+    }
+}
+
+class Developer extends Employee {
+    public void develop() {
+        System.out.println("I am a developer");
+    }
+}
+
+public class EmployeeManagement {
+    public static void main(String[] args) {
+        System.out.println("Employee Management System");
+
+        Manager m = new Manager();
+        m.employeeDetails();
+        m.manage();
+
+        Developer d = new Developer();
+        d.employeeDetails();
+        d.develop();
+    }
+}
+[13/11, 9:36 pm] Chaitanyya: class Hospital {
+    public void hospitalDetails() {
+        System.out.println("Hospital Information");
+    }
+}
+
+class Doctor extends Hospital {
+    public void diagnose() {
+        System.out.println("I am a doctor, diagnosing patients.");
+    }
+}
+
+class Nurse extends Hospital {
+    public void care() {
+        System.out.println("I am a nurse, providing care.");
+    }
+}
+
+public class HospitalManagement {
+    public static void main(String[] args) {
+        System.out.println("Hospital Management System");
+
+        Doctor doctor = new Doctor();
+        doctor.hospitalDetails();
+        doctor.diagnose();
+
+        Nurse nurse = new Nurse();
+        nurse.hospitalDetails();
+        nurse.care();
+    }
+}
+[13/11, 9:36 pm] Chaitanyya: class Account {
+    public void accountDetails() {
+        System.out.println("Account Information");
+    }
+}
+
+class SavingsAccount extends Account {
+    public void save() {
+        System.out.println("This is a savings account");
+    }
+}
+
+class CurrentAccount extends Account {
+    public void transact() {
+        System.out.println("This is a current account");
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        System.out.println("Banking System");
+
+        SavingsAccount sa = new SavingsAccount();
+        sa.accountDetails();
+        sa.save();
+
+        CurrentAccount ca = new CurrentAccount();
+        ca.accountDetails();
+        ca.transact();
+    }
+}
+[13/11, 9:36 pm] Chaitanyya: class Library {
+    public void libraryInfo() {
+        System.out.println("Welcome to the Library Management System");
+    }
+}
+
+class Book extends Library {
+    public void bookDetails() {
+        System.out.println("Displaying book details");
+    }
+}
+
+class Student extends Library {
+    public void borrowBook() {
+        System.out.println("Student borrows a book");
+    }
+}
+
+class Faculty extends Library {
+    public void borrowBook() {
+        System.out.println("Faculty borrows a book");
+    }
+}
+
+class Librarian extends Library {
+    public void manageBooks() {
+        System.out.println("Librarian manages books");
+    }
+    
+    public void issueBook() {
+        System.out.println("Librarian issues a book");
+    }
+    
+    public void returnBook() {
+        System.out.println("Librarian receives returned book");
+    }
+}
+
+public class LibraryManagementSystem {
+    public static void main(String[] args) {
+        System.out.println("Library Management System");
+
+        Library library = new Library();
+        library.libraryInfo();
+
+        Book book = new Book();
+        book.bookDetails();
+
+        Student student = new Student();
+        student.borrowBook();
+
+        Faculty faculty = new Faculty();
+        faculty.borrowBook();
+
+        Librarian librarian = new Librarian();
+        librarian.manageBooks();
+        librarian.issueBook();
+        librarian.returnBook();
+    }
+}
