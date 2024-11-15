@@ -1,43 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Demo</title>
-  </head>
-  <body>
-    <form id="mainForm">
-      <label for="textInput"></label>
-      <input type="text" id="textInput" name="textInput" required />
-      <button type="button" onclick="dalert()">s</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit" id="loginButton">Login</button>
+        </div>
     </form>
-
-    <div id="numberInputContainer">
-      <form id="form">
-        <label for="numberInput"></label>
-        <input
-          type="number"
-          id="numberInput"
-          name="numberInput"
-          min="1"
-          max="1100"
-          required
-        />
-        <button type="submit"></button>
-      </form>
-    </div>
-
-    <script>
-      function dalert() {
-          alert("Demmo alert");
-      }
-
-      document
-        .getElementById("form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-            alert("Demo alert");
-        });
-    </script>
-  </body>
+</body>
 </html>
