@@ -1,0 +1,30 @@
+### **Waveforms and Their Characteristics**
+
+1. **Sine Wave**  
+   - **Description**: A smooth, periodic oscillation. It is the fundamental waveform for all other waves and represents pure tones in audio signals.  
+   - **Mathematical Form**: \( y(t) = A \sin(2 \pi f t + \phi) \)  
+   - **Key Properties**: Amplitude (A), Frequency (f), Phase (\(\phi\)).  
+   - **Phase Shift**: Shifting the phase of a sinusoidal wave does not change its shape; it only translates it along the time axis.
+
+2. **Square Wave**  
+   - **Description**: Alternates between two levels with instantaneous transitions, resembling a rectangular shape.  
+   - **Harmonic Content**: Contains only odd harmonics of the fundamental frequency, decreasing in amplitude as \(1/n\) (where \(n\) is the harmonic number).  
+   - **Usage**: Digital signals, clock pulses in electronics.
+
+3. **Triangle Wave**  
+   - **Description**: A linear rise and fall with a triangular shape.  
+   - **Harmonic Content**: Contains only odd harmonics, but their amplitudes decrease as \(1/n^2\).  
+   - **Usage**: Signal processing, sound synthesis.
+
+4. **Sawtooth Wave**  
+   - **Description**: Ramps upward linearly and then sharply drops.  
+   - **Harmonic Content**: Contains both odd and even harmonics, with amplitudes decreasing as \(1/n\).  
+   - **Usage**: Sound synthesis, especially in analog synthesizers.
+
+5. **Pulse Wave**  
+   - **Description**: Similar to a square wave but with a variable duty cycle (the proportion of the period in which the wave is high).  
+   - **Key Feature**: Asymmetry in high and low states creates a distinct timbre in audio applications.  
+   - **Usage**: Modulation techniques, digital signals.
+
+### **Conclusion**  
+Each waveform has unique characteristics and harmonic content, making them suitable for specific applications in electronics, audio, and signal processing. The sinusoidal wave stands out for its pure tone and its behavior under phase shifting, maintaining its shape regardless of phase changes.
